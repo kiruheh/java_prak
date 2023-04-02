@@ -1,11 +1,13 @@
 package msu.jaba_prak.DAO.impl;
 import jakarta.persistence.Query;
 import msu.jaba_prak.DAO.HistoryDAO;
+import msu.jaba_prak.models.Client;
 import msu.jaba_prak.models.History;
-import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Repository
 public class HistoryDAOimpl extends ParentDAOimpl<History, Long> implements HistoryDAO {
@@ -15,17 +17,13 @@ public class HistoryDAOimpl extends ParentDAOimpl<History, Long> implements Hist
     }
 
     @Override
-    public List<History> historyOfClient(Long client_id){
-        try (Session session = sessionFactory.openSession()){
-            Query query = session.createQuery(
-                    "FROM History WHERE 'client_id' LIKE :gotID", History.class)
-                    .setParameter("gotID", percents(client_id));
-            return query.getResultList().size() == 0 ? null : query.getResultList();
-        }
+    public List<History> historyOfClient(Client client){
+        List<History> his = new ArrayList<>();
+        for(History history : getAll())
+            if (history.getClient().getId().equals(client.getId()))
+                his.add(history);
+
+        return his;
     }
 
-    private String percents(Long input){
-        String s = "%" + input + "%";
-        return s;
-    }
 }

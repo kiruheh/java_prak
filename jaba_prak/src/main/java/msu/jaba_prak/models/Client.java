@@ -11,7 +11,7 @@ import jakarta.persistence.*;
 @Setter
 @ToString
 @NoArgsConstructor
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 @AllArgsConstructor
 
 public class Client implements CommonEntity<Long> {
@@ -23,7 +23,7 @@ public class Client implements CommonEntity<Long> {
     @Column(nullable = false, name = "service_id")
     @ManyToOne(fetch = FetchType.EAGER)
     @ToString.Exclude
-    private Service client_id;
+    private Service service_id;
     @Column(nullable = false, name = "login")
     @NonNull
     private String login;
@@ -57,3 +57,5 @@ public class Client implements CommonEntity<Long> {
     @NonNull
     private boolean exist;
 }
+
+

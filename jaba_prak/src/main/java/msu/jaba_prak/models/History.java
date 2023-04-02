@@ -22,7 +22,7 @@ public class History implements CommonEntity<Long> {
     @ManyToOne(fetch = FetchType.EAGER)
     @NonNull
     @ToString.Exclude
-    private Client client_id;
+    private Client client;
 
     @Column(nullable = false, name = "money_change")
     private Long money;
