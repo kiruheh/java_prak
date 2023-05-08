@@ -1,25 +1,27 @@
-package  msu.jaba_prak.DAO.impl;
+package msu.java.java.DAO.impl;
 
+import msu.java.java.DAO.ComonDAO;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Repository;
-import msu.jaba_prak.DAO.ParentDAO;
-import msu.jaba_prak.models.CommonEntity;
+import msu.java.java.model.CommonEntity;
 
+import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
+
 import java.io.Serializable;
 import java.util.Collection;
 
 @Repository
-public abstract class ParentDAOimpl<T extends CommonEntity<ID>, ID extends Serializable> implements ParentDAO<T, ID> {
-
+public abstract class ComonDAOimpl<T extends CommonEntity<ID>, ID extends Serializable> implements ComonDAO<T, ID> {
+    protected Class<T> entityClass;
     protected SessionFactory sessionFactory;
 
     protected Class<T> persistentClass;
 
-    public ParentDAOimpl(Class<T> entityClass){
+    public ComonDAOimpl(Class<T> entityClass){
         this.persistentClass = entityClass;
     }
 
@@ -38,12 +40,12 @@ public abstract class ParentDAOimpl<T extends CommonEntity<ID>, ID extends Seria
     @Override
     public Collection<T> getAll() {
         try (Session session = sessionFactory.openSession()) {
-            CriteriaQuery<T> criteriaQuery = session.getCriteriaBuilder().createQuery(persistentClass);
-            criteriaQuery.from(persistentClass);
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<T> criteriaQuery = builder.createQuery(entityClass);
+            criteriaQuery.from(entityClass);
             return session.createQuery(criteriaQuery).getResultList();
         }
     }
-
     @Override
     public void save(T entity) {
         try (Session session = sessionFactory.openSession()) {

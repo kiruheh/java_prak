@@ -1,4 +1,4 @@
-package msu.jaba_prak.models;
+package msu.java.java.model;
 
 public class Main {
     public static void main(String[] args) {

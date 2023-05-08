@@ -1,21 +1,22 @@
-package msu.jaba_prak.DAO.impl;
+package msu.java.java.DAO.impl;
 
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
-import msu.jaba_prak.DAO.ServiceDAO;
-import msu.jaba_prak.models.Service;
+import msu.java.java.DAO.ServiceDAO;
+import msu.java.java.model.Service;
 import org.hibernate.Filter;
 import org.hibernate.Session;
+import org.springframework.stereotype.Repository;
 
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
 
-public class ServiceDAOimpl extends ParentDAOimpl<Service, Long> implements ServiceDAO {
+@Repository
+public class ServiceDAOimpl extends ComonDAOimpl<Service, Long> implements ServiceDAO {
 
-    public ServiceDAOimpl(Class<Service> entityClass) {
+    public ServiceDAOimpl() {
         super(Service.class);
     }
 
@@ -33,7 +34,7 @@ public class ServiceDAOimpl extends ParentDAOimpl<Service, Long> implements Serv
     @Override
     public List<Service> getByFilter(Filter filter) {
         try (Session session = sessionFactory.openSession()) {
-            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaBuilder builder = (CriteriaBuilder) session.getCriteriaBuilder();
             CriteriaQuery<Service> criteriaQuery = builder.createQuery(Service.class);
             Root<Service> root = criteriaQuery.from(Service.class);
 

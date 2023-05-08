@@ -1,4 +1,4 @@
-package msu.jaba_prak.models;
+package msu.java.java.model;
 
 import lombok.*;
 
@@ -9,9 +9,10 @@ import jakarta.persistence.*;
 @Getter
 @Setter
 @ToString
-@NoArgsConstructor
+@NoArgsConstructor(force = true)
 @RequiredArgsConstructor
 @AllArgsConstructor
+
 public class Service implements CommonEntity<Long> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

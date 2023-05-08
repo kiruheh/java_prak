@@ -1,12 +1,12 @@
-package msu.jaba_prak.DAO;
+package msu.java.java.DAO;
 
-import msu.jaba_prak.models.Service;
+
+import msu.java.java.model.Service;
 
 import org.hibernate.Filter;
-import java.io.File;
 import java.util.List;
 
-public interface ServiceDAO extends ParentDAO<Service, Long>{
+public interface ServiceDAO extends ComonDAO<Service, Long>{
     public Service getServiceByName(String service_name);
     List<Service> getByFilter(Filter filter);
 

@@ -1,17 +1,16 @@
-package msu.jaba_prak.models;
+package msu.java.java.model;
 
-
-import lombok.*;
 
 import jakarta.persistence.*;
+import lombok.*;
+
+
 
 @Entity
 @Table(name = "client")
 @Getter
 @Setter
-@ToString
-@NoArgsConstructor
-//@RequiredArgsConstructor
+@NoArgsConstructor(force = true)
 @AllArgsConstructor
 
 public class Client implements CommonEntity<Long> {
@@ -20,10 +19,12 @@ public class Client implements CommonEntity<Long> {
     @Column(nullable = false, name = "id")
     private Long id;
 
-    @Column(nullable = false, name = "service_id")
+
     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(nullable = false, name = "service_id")
     @ToString.Exclude
     private Service service_id;
+
     @Column(nullable = false, name = "login")
     @NonNull
     private String login;
@@ -47,15 +48,15 @@ public class Client implements CommonEntity<Long> {
 
     @Column(nullable = false, name = "balance")
     @NonNull
-    private int balance;
+    private Long balance;
 
     @Column(nullable = false, name = "level")
     @NonNull
-    private int level;
+    private Long level;
 
     @Column(nullable = false, name = "exist")
     @NonNull
-    private boolean exist;
+    private Boolean exist;
 }
 
 

@@ -1,10 +1,10 @@
-package msu.jaba_prak;
+package msu.java.java;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class JabaPrakApplicationTests {
+class JavaApplicationTests {
 
 	@Test
 	void contextLoads() {

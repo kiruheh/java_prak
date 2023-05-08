@@ -1,9 +1,9 @@
-package  msu.jaba_prak.DAO;
-import msu.jaba_prak.models.CommonEntity;
+package msu.java.java.DAO;
+import msu.java.java.model.CommonEntity;
 
 import java.util.Collection;
 
-public interface ParentDAO<T extends CommonEntity<ID>, ID> {
+public interface ComonDAO<T extends CommonEntity<ID>, ID> {
     T getById(ID id);
 
     Collection<T> getAll();

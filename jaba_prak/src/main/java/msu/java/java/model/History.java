@@ -1,4 +1,4 @@
-package msu.jaba_prak.models;
+package msu.java.java.model;
 
 import lombok.*;
 
@@ -8,18 +8,18 @@ import jakarta.persistence.*;
 @Table(name = "history")
 @Getter
 @Setter
-@ToString
-@NoArgsConstructor
-@RequiredArgsConstructor
+@NoArgsConstructor(force = true)
 @AllArgsConstructor
+
 public class History implements CommonEntity<Long> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, name = "id")
     private Long id;
 
-    @Column(nullable = false, name = "client_id")
+
     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(nullable = false, name = "client_id")
     @NonNull
     @ToString.Exclude
     private Client client;

@@ -1,29 +1,26 @@
-package msu.jaba_prak;
+package msu.java.java;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.test.context.TestPropertySource;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-@Configuration
-@PropertySource("classpath:application.properties")
-public class HibernateDatabaseConfigTest{
+@SpringBootTest
+@TestPropertySource(locations="classpath:application.properties")
+class HibernateDatabaseConfigTest {
     @Autowired
     private LocalSessionFactoryBean sessionFactory;
 
     @Test
-    public void test(){
+    public void test() {
         SessionFactory sessionFactoryObject = sessionFactory.getObject();
         assertNotNull(sessionFactoryObject);
         Session session = sessionFactoryObject.openSession();
         assertNotNull(session);
     }
-
-
 }

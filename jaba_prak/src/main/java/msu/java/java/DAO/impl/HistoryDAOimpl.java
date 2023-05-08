@@ -1,16 +1,15 @@
-package msu.jaba_prak.DAO.impl;
-import jakarta.persistence.Query;
-import msu.jaba_prak.DAO.HistoryDAO;
-import msu.jaba_prak.models.Client;
-import msu.jaba_prak.models.History;
+package msu.java.java.DAO.impl;
+import msu.java.java.DAO.HistoryDAO;
+
+import msu.java.java.model.Client;
+import msu.java.java.model.History;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Repository
-public class HistoryDAOimpl extends ParentDAOimpl<History, Long> implements HistoryDAO {
+public class HistoryDAOimpl extends ComonDAOimpl<History, Long> implements HistoryDAO {
 
     public HistoryDAOimpl() {
         super(History.class);
